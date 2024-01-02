@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Phone</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="phoneCanvas" width="300" height="500" style="border: 2px solid #333;"></canvas>
+
+    <script>
+        const canvas = document.getElementById('phoneCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function drawPhone() {
+            // Draw phone body
+            ctx.beginPath();
+            ctx.moveTo(50, 20);
+            ctx.lineTo(250, 20);
+            ctx.quadraticCurveTo(270, 20, 270, 40);
+            ctx.lineTo(270, 440);
+            ctx.quadraticCurveTo(270, 460, 250, 460);
+            ctx.lineTo(50, 460);
+            ctx.quadraticCurveTo(30, 460, 30, 440);
+            ctx.lineTo(30, 40);
+            ctx.quadraticCurveTo(30, 20, 50, 20);
+            ctx.fillStyle = '#808080'; // Gray color for the phone body
+            ctx.fill();
+            ctx.stroke();
+
+            // Draw inner background
+            ctx.fillStyle = '#fff'; // White color for the inner background
+            ctx.fillRect(60, 30, 180, 380);
+
+            // Draw screen
+            ctx.fillStyle = '#000'; // Black color for the screen
+            ctx.fillRect(60, 30, 180, 380);
+
+            // Draw round button (bigger)
+            drawRoundButton(150, 440, 15);
+
+            // Draw circular camera
+            drawCircularCamera(150, 60);
+        }
+
+        function drawRoundButton(x, y, radius) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = '#333'; // Dark color for the button
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        function drawCircularCamera(x, y) {
+            ctx.beginPath();
+            ctx.arc(x, y, 8, 0, 2 * Math.PI);
+            ctx.fillStyle = '#333'; // Dark color for the camera
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        // Initial drawing
+        drawPhone();
+    </script>
+</body>
